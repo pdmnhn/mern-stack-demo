@@ -24,7 +24,7 @@ const unknownEndpoint = (req, res) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  if (error.code === 11000) {
+  if (err.code === 11000) {
     res.status(400).send({ error: "user with the given email already exists" });
   }
   console.log(err.message);
