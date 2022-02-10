@@ -20,6 +20,7 @@ mongoose
     console.log("Error connecting to MongoDB:", err.message);
   });
 
+app.use(express.static("build"));
 app.get("/", (req, res) => {
   res.status(200).send("Hello");
 });
