@@ -5,7 +5,7 @@ const User = require("../models/user");
 signupRouter.post("/", async (req, res) => {
   const { firstName, lastName, email, phone, address, password } = req.body;
   if (!(firstName && lastName && email && phone && address && password)) {
-    res.status(400).send({ error: "all details are required" });
+    return res.status(400).send({ error: "all details are required" });
   }
   const saltRounds = 10;
   passwordHash = await bcrypt.hash(password, saltRounds);

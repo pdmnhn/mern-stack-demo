@@ -6,17 +6,18 @@ const User = require("../models/user");
 loginRouter.post("/", async (req, res) => {
   const { email, password } = req.body;
   if (!(email && password)) {
-    res.send(400).send({ error: "missing email and/or password" });
+    return res.send(400).send({ error: "missing email and/or password" });
   }
 
-  const { passwordHash, id } = await User.findOne({ email });
+  const user = await User.findOne({ email });
   if (!user) {
-    res.status(401).send({ error: "no user exists with this email" });
+    return res.status(401).send({ error: "no user exists with this email" });
   }
+  const { passwordHash, id } = user;
   const success = await bcrypt.compare(password, passwordHash);
 
   if (!success) {
-    res.status(401).send({ error: "password entered is wrong" });
+    return res.status(401).send({ error: "password entered is wrong" });
   }
 
   const userForToken = { email, id };

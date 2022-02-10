@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { signup } from "../services/api";
 
 const Signup = () => {
@@ -70,6 +71,7 @@ const Signup = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <Link to="/login">Already have an account? Signin</Link>
     </div>
   );
 };
