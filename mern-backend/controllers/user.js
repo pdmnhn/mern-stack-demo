@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 userRouter.get("/", async (req, res) => {
   if (!req.user) {
-    res.status(401).send({ error: "authorization header missing" });
+    return res.status(401).send({ error: "authorization header missing" });
   }
 
   const { firstName, lastName, email, phone, address } = await User.findById(
